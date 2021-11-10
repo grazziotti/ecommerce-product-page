@@ -52,14 +52,20 @@
   <main class="main">
     <section class="product">
       <div class="container">
-        <div class="product__images-container">
-          <div class="product__images">
-            <div class="product__large-img-container">
-              <img class="product__large-img" src="./assets/images/image-product-1.jpg" alt="Product Large image">
+        <div class="product__gallery-container">
+          <div class="product__gallery">
+            <div class="product__main-image-container">
+              <button>
+                <img class="product__main-image" src="./assets/images/image-product-1.jpg" alt="Product Large image">
+              </button>
+              <div class="product__gallery__nav">
+                <button class="product__gallery__nav__btn prev"></button>
+                <button class="product__gallery__nav__btn next"></button>
+              </div>
             </div>
             <ul class="product__thumbnail-list">
               <li class="product__thumbnail-item active">
-                <img class="product__thumbnail-img" src="./assets/images/image-product-1-thumbnail.jpg" alt="Product thumbnail">
+                  <img class="product__thumbnail-img" src="./assets/images/image-product-1-thumbnail.jpg" alt="Product thumbnail">
               </li>
               <li class="product__thumbnail-item">
                 <img class="product__thumbnail-img" src="./assets/images/image-product-2-thumbnail.jpg" alt="Product thumbnail">
@@ -71,6 +77,40 @@
                 <img class="product__thumbnail-img" src="./assets/images/image-product-4-thumbnail.jpg" alt="Product thumbnail">
               </li>
             </ul>
+          </div>
+          <div class="product__modal">
+            <div class="product__modal__content">
+              <div class="product__modal__header">
+                <button class="product__modal__close-btn">
+                  <img src="./assets/images/icon-close.svg" alt="">
+                </button>
+              </div>
+              <div class="product__modal__body">
+                <div class="product__gallery">
+                  <div class="product__main-image-container">
+                    <img class="product__main-image" src="./assets/images/image-product-1.jpg" alt="Product Large image">
+                    <div class="product__gallery__nav">
+                      <button class="product__gallery__nav__btn prev"></button>
+                      <button class="product__gallery__nav__btn next"></button>
+                    </div>
+                  </div>
+                  <ul class="product__thumbnail-list">
+                    <li class="product__thumbnail-item active">
+                      <img class="product__thumbnail-img" src="./assets/images/image-product-1-thumbnail.jpg" alt="Product thumbnail">
+                    </li>
+                    <li class="product__thumbnail-item">
+                      <img class="product__thumbnail-img" src="./assets/images/image-product-2-thumbnail.jpg" alt="Product thumbnail">
+                    </li>
+                    <li class="product__thumbnail-item">
+                      <img class="product__thumbnail-img" src="./assets/images/image-product-3-thumbnail.jpg" alt="Product thumbnail">
+                    </li>
+                    <li class="product__thumbnail-item">
+                      <img class="product__thumbnail-img" src="./assets/images/image-product-4-thumbnail.jpg" alt="Product thumbnail">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="product__info">
