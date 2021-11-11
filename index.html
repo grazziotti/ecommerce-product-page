@@ -34,15 +34,38 @@
           <li class="header__menu__item"><a href="#" class="header__menu__link">About</a></li>
           <li class="header__menu__item"><a href="#" class="header__menu__link">Contact</a></li>
         </ul>
-        <div href="#" class="header__cart">
+
+        <div class="header__cart">
           <a href="#" class="header__cart__icon-container">
             <svg class="header__cart__icon" width="22" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="#69707D" fill-rule="nonzero"/></svg>
+            <span class="header__cart__cart-qnt">3</span>
           </a>
           <div class="header__cart__modal">
-            <h3 class="header__cart__modal__header">Cart</h3>
-            <div class="header__cart__modal__body"></div>
+            <div class="header__cart__modal__header">
+              <h3>Cart</h3>
+            </div>
+            <div class="header__cart__modal__body">
+              <div class="header__cart__item">
+                <div class="header__cart__item__thumbnail-image">
+                  <img src="./assets/images/image-product-1-thumbnail.jpg" alt="Product thumbnail image">
+                </div>
+                <div class="header__cart__item__info">
+                  <h4 class="header__cart__item__product-name">Fall Limited Edition Sneakers</h4>
+                  <div class="header__cart__item__price">
+                    <p class="header__cart__item__price-original">$125.00</p>
+                    <p class="header__cart__item__qnt">x 3</p>
+                    <strong class="header__cart__item__price-total">$375.00</strong>
+                  </div>
+                </div>
+                <button class="header__cart__item__delete-btn">
+                  <img src="./assets/images/icon-delete.svg" alt="Delete icon">
+                </button>
+              </div>
+              <button class="header__cart__item__checkout-btn btn">Checkout</button>
+            </div>
           </div>
         </div>
+
         <a href="#" class="header__profile">
           <img src="./assets/images/image-avatar.png" class="header__profile__avatar" alt="Profile avatar">
         </a>
@@ -82,7 +105,7 @@
             <div class="product__modal__content">
               <div class="product__modal__header">
                 <button class="product__modal__close-btn">
-                  <img src="./assets/images/icon-close.svg" alt="">
+                  <img src="./assets/images/icon-close.svg" alt="Close icon">
                 </button>
               </div>
               <div class="product__modal__body">
@@ -150,6 +173,6 @@
   <div class="attribution">
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
       Coded by <a href="#">Your Name Here</a>.
-    </div>
+  </div>
 </body>
 </html>
