@@ -11,11 +11,6 @@
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
 
   <link rel="stylesheet" href="./assets/css/style.css">
-
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
 <body>
   <header class="header">
@@ -27,13 +22,20 @@
         <a href="#" class="header__logo">
           <img class="header__logo__img"  src="./assets/images/logo.svg" alt="Logo">
         </a>
-        <ul class="header__menu">
-          <li class="header__menu__item"><a href="#" class="header__menu__link">Collections</a></li>
-          <li class="header__menu__item"><a href="#" class="header__menu__link">Men</a></li>
-          <li class="header__menu__item"><a href="#" class="header__menu__link">Women</a></li>
-          <li class="header__menu__item"><a href="#" class="header__menu__link">About</a></li>
-          <li class="header__menu__item"><a href="#" class="header__menu__link">Contact</a></li>
-        </ul>
+        <div class="header__menu-container">
+          <div class="header__menu-lightBox">
+            <button class="header__close-btn">
+              <img src="./assets/images/icon-close.svg" alt="Close icon">
+            </button>
+            <ul class="header__menu">
+              <li class="header__menu__item"><a href="#" class="header__menu__link">Collections</a></li>
+              <li class="header__menu__item"><a href="#" class="header__menu__link">Men</a></li>
+              <li class="header__menu__item"><a href="#" class="header__menu__link">Women</a></li>
+              <li class="header__menu__item"><a href="#" class="header__menu__link">About</a></li>
+              <li class="header__menu__item"><a href="#" class="header__menu__link">Contact</a></li>
+            </ul>
+          </div>
+        </div>
 
         <div class="header__cart">
           <a href="#" class="header__cart__icon-container">
@@ -65,7 +67,6 @@
             </div>
           </div>
         </div>
-
         <a href="#" class="header__profile">
           <img src="./assets/images/image-avatar.png" class="header__profile__avatar" alt="Profile avatar">
         </a>
@@ -105,7 +106,7 @@
             <div class="product__modal__content">
               <div class="product__modal__header">
                 <button class="product__modal__close-btn">
-                  <img src="./assets/images/icon-close.svg" alt="Close icon">
+                  <img src="./assets/images/icon-close-white.svg" alt="Close icon">
                 </button>
               </div>
               <div class="product__modal__body">
@@ -137,42 +138,46 @@
           </div>
         </div>
         <div class="product__info">
-          <p class="product__company">sneaker company</p>
+          <div class="product__info__content">
+            <p class="product__company">sneaker company</p>
 
-          <h2 class="product__title">Fall Limited Edition Sneakers</h2>
+            <h2 class="product__title">Fall Limited Edition Sneakers</h2>
 
-          <p class="product__desc"> 
-            These low-profile sneakers are your perfect casual wear companion. Featuring a 
-            durable rubber outer sole, they’ll withstand everything the weather can offer.
-          </p>
+            <p class="product__desc"> 
+              These low-profile sneakers are your perfect casual wear companion. Featuring a 
+              durable rubber outer sole, they’ll withstand everything the weather can offer.
+            </p>
 
-          <div class="product__cost-box">
-            <div class="product__cost-box__top">
-              <strong class="product__price-now">$125.00</strong>
-              <span class="product__discount">50%</span>
+            <div class="product__cost-box">
+              <div class="product__cost-box__top">
+                <strong class="product__price-now">$125.00</strong>
+                <span class="product__discount">50%</span>
+              </div>
+              <p class="product__price-original">$250.00</p>
             </div>
-            <p class="product__price-original">$250.00</p>
-          </div>
 
-          <div class="product__buying">
-            <div class="product__qnt">
-              <button class="product__qnt__btn">
-                <img src="./assets/images/icon-minus.svg" alt="Minus icon">
-              </button>
-              <div class="product__qnt__num">0</div>
-              <button class="product__qnt__btn">
-                <img src="./assets/images/icon-plus.svg" alt="Plus icon">
-              </button>
-            </div> 
-            <button class="product__add-btn btn">Add to cart</button>
+            <div class="product__buying">
+              <div class="product__qnt">
+                <button class="product__qnt__btn">
+                  <img src="./assets/images/icon-minus.svg" alt="Minus icon">
+                </button>
+                <div class="product__qnt__num">0</div>
+                <button class="product__qnt__btn">
+                  <img src="./assets/images/icon-plus.svg" alt="Plus icon">
+                </button>
+              </div> 
+              <button class="product__add-btn btn">Add to cart</button>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
-  <div class="attribution">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-      Coded by <a href="#">Your Name Here</a>.
-  </div>
+  <footer class="footer">
+    <div class="footer__attribution">
+      Challenge by <a class="footer__link" href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a class="footer__link" href="https://github.com/grazziotti" target="_blank">Grazziotti</a>.
+    </div>
+  </footer>
 </body>
 </html>
