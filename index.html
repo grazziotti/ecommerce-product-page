@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   
   <title>Frontend Mentor | E-commerce product page</title>
 
@@ -16,13 +16,13 @@
   <header class="header">
     <div class="container">
       <nav class="header__nav">
-        <a href="#" class="header__mobile-btn">
-          <img class="header__mobile-btn__icon" src="./assets/images/icon-menu.svg" alt="Menu icon">
-        </a>
+        <button class="header__open-btn">
+          <img src="./assets/images/icon-menu.svg" alt="Menu icon">
+        </button>
         <a href="#" class="header__logo">
-          <img class="header__logo__img"  src="./assets/images/logo.svg" alt="Logo">
+          <img  src="./assets/images/logo.svg" alt="Logo">
         </a>
-        <div class="header__menu-container">
+        <div class="header__menu-container" data-anime-md="opacity">
           <div class="header__menu-lightBox">
             <button class="header__close-btn">
               <img src="./assets/images/icon-close.svg" alt="Close icon">
@@ -36,39 +36,26 @@
             </ul>
           </div>
         </div>
-
-        <div class="header__cart">
-          <a href="#" class="header__cart__icon-container">
-            <svg class="header__cart__icon" width="22" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="#69707D" fill-rule="nonzero"/></svg>
-            <span class="header__cart__cart-qnt">3</span>
-          </a>
+        <div class="header__cart is-empty">
+          <button href="#" class="header__cart-icon">
+            <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="#69707D" fill-rule="nonzero"/></svg>
+            <span class="header__cart__count"></span>
+          </button>
           <div class="header__cart__modal">
-            <div class="header__cart__modal__header">
-              <h3>Cart</h3>
-            </div>
-            <div class="header__cart__modal__body">
-              <div class="header__cart__item">
-                <div class="header__cart__item__thumbnail-image">
-                  <img src="./assets/images/image-product-1-thumbnail.jpg" alt="Product thumbnail image">
-                </div>
-                <div class="header__cart__item__info">
-                  <h4 class="header__cart__item__product-name">Fall Limited Edition Sneakers</h4>
-                  <div class="header__cart__item__price">
-                    <p class="header__cart__item__price-original">$125.00</p>
-                    <p class="header__cart__item__qnt">x 3</p>
-                    <strong class="header__cart__item__price-total">$375.00</strong>
-                  </div>
-                </div>
-                <button class="header__cart__item__delete-btn">
-                  <img src="./assets/images/icon-delete.svg" alt="Delete icon">
-                </button>
+            <div class="header__cart__modal__content" data-anime="top">
+              <div class="header__cart__modal__header">
+                <h3 class="header__cart__modal__title">Cart</h3>
               </div>
-              <button class="header__cart__item__checkout-btn btn">Checkout</button>
+              <div class="header__cart__modal__body">
+                <span class="header__cart__empty-message">Your cart is empty.</span>
+                <div class="header__cart__items"></div>
+                <button class="header__cart__checkout-btn btn">Checkout</button>
+              </div>
             </div>
           </div>
         </div>
         <a href="#" class="header__profile">
-          <img src="./assets/images/image-avatar.png" class="header__profile__avatar" alt="Profile avatar">
+          <img src="./assets/images/image-avatar.png" alt="Profile avatar">
         </a>
       </nav>
     </div>
@@ -78,58 +65,60 @@
       <div class="container">
         <div class="product__gallery-container">
           <div class="product__gallery">
-            <div class="product__main-image-container">
-              <button>
-                <img class="product__main-image" src="./assets/images/image-product-1.jpg" alt="Product Large image">
+            <div class="product__gallery__main-img-container">
+              <button class="product__gallery__main-img">
+                <img src="" alt="Product Large image">
               </button>
               <div class="product__gallery__nav">
                 <button class="product__gallery__nav__btn prev"></button>
                 <button class="product__gallery__nav__btn next"></button>
               </div>
             </div>
-            <ul class="product__thumbnail-list">
-              <li class="product__thumbnail-item active">
-                  <img class="product__thumbnail-img" src="./assets/images/image-product-1-thumbnail.jpg" alt="Product thumbnail">
+            <ul class="product__gallery__thumbnail-list">
+              <li class="product__gallery__thumbnail-item active" data-index="0">
+                <img src="" alt="Product thumbnail">
               </li>
-              <li class="product__thumbnail-item">
-                <img class="product__thumbnail-img" src="./assets/images/image-product-2-thumbnail.jpg" alt="Product thumbnail">
+              <li class="product__gallery__thumbnail-item" data-index="1">
+                <img src="" alt="Product thumbnail">
               </li>
-              <li class="product__thumbnail-item">
-                <img class="product__thumbnail-img" src="./assets/images/image-product-3-thumbnail.jpg" alt="Product thumbnail">
+              <li class="product__gallery__thumbnail-item" data-index="2">
+                <img src="" alt="Product thumbnail">
               </li>
-              <li class="product__thumbnail-item">
-                <img class="product__thumbnail-img" src="./assets/images/image-product-4-thumbnail.jpg" alt="Product thumbnail">
+              <li class="product__gallery__thumbnail-item" data-index="3">
+                <img src="" alt="Product thumbnail">
               </li>
             </ul>
           </div>
-          <div class="product__modal">
-            <div class="product__modal__content">
-              <div class="product__modal__header">
-                <button class="product__modal__close-btn">
+          <div class="product__lightBox" data-anime="opacity">
+            <div class="product__lightBox__content">
+              <div class="product__lightBox__header">
+                <button class="product__lightBox__close-btn">
                   <img src="./assets/images/icon-close-white.svg" alt="Close icon">
                 </button>
               </div>
-              <div class="product__modal__body">
+              <div class="product__lightBox__body">
                 <div class="product__gallery">
-                  <div class="product__main-image-container">
-                    <img class="product__main-image" src="./assets/images/image-product-1.jpg" alt="Product Large image">
+                  <div class="product__gallery__main-img-container">
+                    <div class="product__gallery__main-img">
+                      <img src="" alt="Product Large image">
+                    </div>
                     <div class="product__gallery__nav">
                       <button class="product__gallery__nav__btn prev"></button>
                       <button class="product__gallery__nav__btn next"></button>
                     </div>
                   </div>
-                  <ul class="product__thumbnail-list">
-                    <li class="product__thumbnail-item active">
-                      <img class="product__thumbnail-img" src="./assets/images/image-product-1-thumbnail.jpg" alt="Product thumbnail">
+                  <ul class="product__gallery__thumbnail-list">
+                    <li class="product__gallery__thumbnail-item active" data-index="0">
+                      <img src="" alt="Product thumbnail">
                     </li>
-                    <li class="product__thumbnail-item">
-                      <img class="product__thumbnail-img" src="./assets/images/image-product-2-thumbnail.jpg" alt="Product thumbnail">
+                    <li class="product__gallery__thumbnail-item" data-index="1">
+                      <img src="" alt="Product thumbnail">
                     </li>
-                    <li class="product__thumbnail-item">
-                      <img class="product__thumbnail-img" src="./assets/images/image-product-3-thumbnail.jpg" alt="Product thumbnail">
+                    <li class="product__gallery__thumbnail-item" data-index="2">
+                      <img src="" alt="Product thumbnail">
                     </li>
-                    <li class="product__thumbnail-item">
-                      <img class="product__thumbnail-img" src="./assets/images/image-product-4-thumbnail.jpg" alt="Product thumbnail">
+                    <li class="product__gallery__thumbnail-item" data-index="3">
+                      <img src="" alt="Product thumbnail">
                     </li>
                   </ul>
                 </div>
@@ -139,34 +128,31 @@
         </div>
         <div class="product__info">
           <div class="product__info__content">
-            <p class="product__company">sneaker company</p>
+            <p class="product__info__company"></p>
 
-            <h2 class="product__title">Fall Limited Edition Sneakers</h2>
+            <h2 class="product__info__name"></h2>
 
-            <p class="product__desc"> 
-              These low-profile sneakers are your perfect casual wear companion. Featuring a 
-              durable rubber outer sole, they’ll withstand everything the weather can offer.
-            </p>
+            <p class="product__info__desc"> </p>
 
-            <div class="product__cost-box">
-              <div class="product__cost-box__top">
-                <strong class="product__price-now">$125.00</strong>
-                <span class="product__discount">50%</span>
+            <div class="product__info__cost-box">
+              <div class="product__info__cost-box__top">
+                <strong class="product__info__price-now"></strong>
+                <span class="product__info__discount"></span>
               </div>
-              <p class="product__price-original">$250.00</p>
+              <p class="product__info__price-original"></p>
             </div>
 
-            <div class="product__buying">
-              <div class="product__qnt">
-                <button class="product__qnt__btn">
+            <div class="product__info__buying">
+              <div class="product__info__qnt">
+                <button class="product__info__qnt__btn minus">
                   <img src="./assets/images/icon-minus.svg" alt="Minus icon">
                 </button>
-                <div class="product__qnt__num">0</div>
-                <button class="product__qnt__btn">
+                <div class="product__info__qnt__count">0</div>
+                <button class="product__info__qnt__btn plus">
                   <img src="./assets/images/icon-plus.svg" alt="Plus icon">
                 </button>
               </div> 
-              <button class="product__add-btn btn">Add to cart</button>
+              <button class="product__info__add-btn btn">Add to cart</button>
             </div>
           </div>
         </div>
@@ -179,5 +165,7 @@
       Coded by <a class="footer__link" href="https://github.com/grazziotti" target="_blank">Grazziotti</a>.
     </div>
   </footer>
+  <script type="text/javascript" src="./assets/js/product.js"></script>
+  <script type="text/javascript" src="./assets/js/script.js"></script>
 </body>
 </html>
