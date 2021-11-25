@@ -37,6 +37,24 @@ img {
     border-radius: inherit;
 }
 
+[data-anime] {
+    opacity: 0;
+    transition: .3s;
+}
+
+[data-anime="top"] {
+    transform: translateY(-3rem);
+}
+
+[data-anime].animate {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.no-transition {
+    transition: none !important;
+}
+
 .container {
     width: 100%;
     max-width: 144rem;
@@ -124,8 +142,8 @@ img {
     align-items: center;
     position: relative;
     height: 100%;
-    margin: 0 1.6rem;
-    font-size: 1.6rem;
+    margin: 0 1.8rem;
+    font-size: 1.5rem;
     text-decoration: none;
     color: var(--Dark-grayish-blue);
     transition: .3s;
@@ -192,7 +210,7 @@ img {
 .header__cart__modal__content {
     border-radius: 1rem;
     background-color: var(--White);
-    box-shadow: 0 20px 40px -10px rgba(166, 167, 179, 0.7);
+    box-shadow: 0 20px 40px -10px rgba(166, 167, 179, .7);
 }
 
 .header__cart__modal__header {
@@ -325,16 +343,30 @@ img {
     width: 50%;
 }
 
-.product__gallery__main-img-container {
-    position: relative;
-    max-width: 45rem;
-    margin: auto;
-    border-radius: 1rem;
+.product__gallery {
+    display: flex;
+    flex-direction: column;
 }
 
 .product__gallery__main-img {
-    
-    border-radius: inherit;
+    position: relative;
+    width: 45rem;
+    margin: auto;
+    cursor: pointer;
+}
+
+.product__gallery__slider {
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.product__gallery__slide img {
+    height: 100%;
+}
+
+.product__gallery__slider-width {
+    display: flex;
+    transition: .3s;
 }
 
 .product__gallery__nav {
@@ -391,8 +423,14 @@ img {
     max-height: 9rem;
     margin-right: 3.2rem;
     border-radius: 1rem;
-    cursor: pointer;
     overflow: hidden;
+    cursor: pointer;
+    outline: 2px solid transparent;
+}
+
+.product__gallery__thumbnail-item img {
+    border-radius: 0;
+    height: 100%;
 }
 
 .product__gallery__thumbnail-item:last-child {
@@ -400,7 +438,7 @@ img {
 }
 
 .product__gallery__thumbnail-item.active {
-    outline: 2px solid var(--Orange);
+    outline-color: var(--Orange);
 }
 
 .product__gallery__thumbnail-item::after {
@@ -455,8 +493,8 @@ img {
     display: flex;
 }
 
-.product__lightBox .product__gallery__main-img-container {
-    max-width: 55rem;
+.product__lightBox .product__gallery__main-img {
+    width: 55rem;
     cursor: default;
 }
 
@@ -484,7 +522,7 @@ img {
 .product__info__desc {
     margin-top: 3.2rem;
     font-size: 1.6rem;
-    line-height: 1.7;
+    line-height: 1.6;
     color: var(--Dark-grayish-blue);
 }
 
@@ -499,6 +537,7 @@ img {
 
 .product__info__price-now {
     font-size: 2.8rem;
+    letter-spacing: .5px;
     color: var(--Very-vark-blue);
 }
 
@@ -522,7 +561,7 @@ img {
 
 .product__info__buying {
     display: flex;
-    margin-top: 3.2rem;
+    margin-top: 4rem;
 }
 
 .product__info__qnt {
@@ -558,7 +597,7 @@ img {
 
 .product__info__add-btn {
     margin-left: 1.6rem;
-    box-shadow: 0 15px 50px 0 rgba(255, 125, 26, .4);
+    box-shadow: 0 5px 30px 0 rgba(255, 125, 26, .4);
 }
 
 .product__info__add-btn::before {
@@ -589,21 +628,6 @@ img {
     font-weight: 700;
     color: var(--Orange);
 }
-
-[data-anime] {
-    opacity: 0;
-    transition: .3s;
-}
-
-[data-anime="top"] {
-    transform: translateY(-3rem);
-}
-
-[data-anime].animate {
-    opacity: 1;
-    transform: translate(0, 0);
-}
-
 
 @media (max-width: 1180px) {
     .container {
@@ -689,6 +713,15 @@ img {
     /* 
         Product section
     */
+    /* product gallery */
+    .product__gallery__main-img {
+        width: 100%;
+    }
+
+    .product__lightBox .product__gallery__main-img {
+        width: 45rem;
+    }
+
     /* product info */
     .product__info {
        padding: 0 0 0 3.2rem;
@@ -755,9 +788,13 @@ img {
         padding-left: 0;
     }
 
-    .product__gallery__main-img-container {
+    .product__gallery__main-img {
+        width: 100vw;
+        cursor: default;
+    }
+
+    .product__gallery__slider {
         border-radius: 0;
-        max-width: none;
     }
 
     .product__lightBox.is-open {
@@ -791,17 +828,19 @@ img {
         padding: 0 2.4rem;
         margin-top: 2.4rem;
     }
-
+    
     .product__info__name {
         margin-top: 1.6rem;
     }
 
     .product__info__desc {
         margin-top: 1.6rem;
+        font-size: 1.5rem;
     }
 
     .product__info__cost-box {
         display: flex;
         justify-content: space-between;
+        margin-top: 3.2rem;
     }
 }

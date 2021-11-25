@@ -1,7 +1,7 @@
  const product = {
     id: 1,
     imgs: {
-        main: ['./assets/images/image-product-1.jpg', './assets/images/image-product-2.jpg', './assets/images/image-product-3.jpg', './assets/images/image-product-4.jpg',], 
+        main: ['./assets/images/image-product-1.jpg', './assets/images/image-product-2.jpg', './assets/images/image-product-3.jpg', './assets/images/image-product-4.jpg'], 
         thumbnails: ['./assets/images/image-product-1-thumbnail.jpg', './assets/images/image-product-2-thumbnail.jpg', './assets/images/image-product-3-thumbnail.jpg', './assets/images/image-product-4-thumbnail.jpg']
     },
     company: 'Sneaker company',

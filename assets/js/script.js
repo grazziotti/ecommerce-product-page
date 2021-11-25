@@ -16,20 +16,18 @@ const cart = []
 
 // slider
 const totalSlides = product.imgs.thumbnails.length-1
-let currentSlide = 0
+let currentSlideIndex = 0
 
 // product lightBox
 const lightBox = document.querySelector('.product__lightBox')
-const openLightBoxBtn = document.querySelector('button.product__gallery__main-img')
+const openLightBoxBtn = document.querySelector('.product__gallery__slider')
 const closeLightBoxBtn = document.querySelector('.product__lightBox__close-btn')
 
 // qnt
 const countContainer = document.querySelector('.product__info__qnt__count')
 const decreaseBtn = document.querySelector('.product__info__qnt__btn.minus')
 const increaseBtn = document.querySelector('.product__info__qnt__btn.plus')
-let qnt = 0
-
-
+let qnt = 1
 
 // FUNCTIONS
 
@@ -144,44 +142,56 @@ const addItemToCart = () => {
 addCartBtn.addEventListener('click', addItemToCart)
 
 // slider
-const getCurrentSlide = gallery => gallery.querySelector('.product__gallery__thumbnail-item.active').getAttribute('data-index')
+const getCurrentSlideIndex = gallery => Number.parseInt(gallery.querySelector('.product__gallery__thumbnail-item.active').getAttribute('data-index'))
 
 const updateSlide = gallery => {
-    const mainImg = gallery.querySelector('.product__gallery__main-img img')
-    const currentImg = gallery.querySelector('.product__gallery__thumbnail-item.active')
-    const targetImg = gallery.querySelectorAll('.product__gallery__thumbnail-item')[currentSlide]
+    const slider = gallery.querySelector('.product__gallery__slider-width')
+    const currentSlide = gallery.querySelector('.product__gallery__thumbnail-item.active')
+    const targetSlide = gallery.querySelectorAll('.product__gallery__thumbnail-item')[currentSlideIndex]
     
-    currentImg.classList.remove('active')
-    targetImg.classList.add('active')
+    currentSlide.classList.remove('active')
+    targetSlide.classList.add('active')
 
-    mainImg.src = product.imgs.main[currentSlide]
+    const sliderWidth = slider.clientWidth
+    const newMargin = (sliderWidth / product.imgs.main.length) * getCurrentSlideIndex(gallery)
+    
+    slider.style.marginLeft = `-${newMargin}px`
 }
 
 const goPrev = gallery => {
-    currentSlide = getCurrentSlide(gallery)          
-    currentSlide <= 0 
-        ? currentSlide = totalSlides
-        : currentSlide--
+    currentSlideIndex = getCurrentSlideIndex(gallery)          
+    currentSlideIndex <= 0 
+        ? currentSlideIndex = totalSlides
+        : currentSlideIndex--
     
     updateSlide(gallery)
 }
 
 const goNext = gallery => {
-    currentSlide = getCurrentSlide(gallery)       
-    currentSlide >= totalSlides
-        ? currentSlide = 0
-        : currentSlide++
+    currentSlideIndex = getCurrentSlideIndex(gallery)       
+    currentSlideIndex >= totalSlides
+        ? currentSlideIndex = 0
+        : currentSlideIndex++
     
     updateSlide(gallery)
 }
 
 // product lightBox
 const openLightBox = () => {
+    const lightBoxGallery = lightBox.querySelector('.product__gallery')
+    const lightBoxSlider = lightBox.querySelector('.product__gallery__slider-width')
+
+    lightBoxSlider.classList.add('no-transition')
+
     lightBox.classList.add('is-open')
     setTimeout( () => lightBox.classList.add('animate'), 1)
 
-    currentSlide = document.querySelector('.product__gallery__thumbnail-item.active').getAttribute('data-index')
-    updateSlide(lightBox.querySelector('.product__gallery'))    
+    currentSlideIndex = getCurrentSlideIndex(document.querySelector('.product__gallery-container .product__gallery'))
+    updateSlide(lightBoxGallery) 
+    
+    setTimeout( () => lightBoxSlider.classList.remove('no-transition'), 305)
+
+    closeCart()
 }
 openLightBoxBtn.addEventListener('click', openLightBox)
 
@@ -193,14 +203,14 @@ closeLightBoxBtn.addEventListener('click', closeLightBox)
 
 // qnt
 resetQnt = () => {
-    qnt = 0
+    qnt = 1
     updateCount()
 }
 
 const updateCount = () => countContainer.innerText = qnt
 
 const decreaseQnt = () => {
-    if (qnt > 0) qnt--
+    if (qnt > 1) qnt--
     updateCount()
 }
 decreaseBtn.addEventListener('click', decreaseQnt)
@@ -223,34 +233,71 @@ const renderProductInfo = () => {
     productInfoContainer.querySelector('.product__info__price-original').innerHTML = `$${product.price.original}`
 }
 
+const renderThumbnailImgs = gallery => {
+    const thumbnailList = gallery.querySelector('.product__gallery__thumbnail-list')
+
+    product.imgs.thumbnails.forEach( (imgSrc, index) => {
+        const thumbnailItem = document.createElement('div')
+
+        thumbnailItem .classList.add('product__gallery__thumbnail-item')
+        if (index === 0) thumbnailItem .classList.add('active')
+        thumbnailItem .setAttribute('data-index', index)
+        
+        const thumbnailImg = document.createElement('img')
+        thumbnailImg.src = imgSrc
+        thumbnailImg.alt = 'Product thumbnail image'
+
+        thumbnailItem.addEventListener('click', () => {
+            currentSlideIndex = thumbnailItem.getAttribute('data-index')
+            updateSlide(gallery)
+        })
+
+        thumbnailItem.appendChild(thumbnailImg)
+
+        thumbnailList.appendChild(thumbnailItem)
+    })
+}
+
+const renderSlider = gallery => {
+    const mainImgContainer = gallery.querySelector('.product__gallery__main-img')
+    const slider = gallery.querySelector('.product__gallery__slider-width')
+    const sliderWidth = Number.parseInt(window.getComputedStyle(mainImgContainer).getPropertyValue("width").replace('px', '')) * product.imgs.main.length
+
+    slider.style.width = `${sliderWidth}px`
+    
+    product.imgs.main.forEach( (imgSrc, index) => {
+        const slide = document.createElement('div')
+        slide.classList.add('product__gallery__slide')
+        slide.setAttribute('data-index', index)
+       
+
+        const slideImg = document.createElement('img')
+        slideImg.src = imgSrc
+        slideImg.alt = 'Product Large image'
+
+        slide.appendChild(slideImg)
+
+        slider.appendChild(slide)
+    })
+
+    const prevBtn = gallery.querySelector('.product__gallery__nav__btn.prev')
+    const nextBtn = gallery.querySelector('.product__gallery__nav__btn.next')
+    
+    prevBtn.addEventListener('click', () => goPrev(gallery))
+    nextBtn.addEventListener('click', () => goNext(gallery))
+}
+
 const renderGalleries = () => {
     const galleries = document.querySelectorAll('.product__gallery')
     
     galleries.forEach( gallery => {
-        const mainImg = gallery.querySelector('.product__gallery__main-img img')
-        const thumbnailItems = gallery.querySelectorAll('.product__gallery__thumbnail-item')
-
-        mainImg.src = product.imgs.main[0]
-
-        thumbnailItems.forEach( (item, index) => {
-            item.querySelector('img').src = product.imgs.thumbnails[index]
-            
-            item.addEventListener('click', () => {
-                currentSlide = item.getAttribute('data-index')
-                updateSlide(gallery)
-            })
-        })
-
-        const prevBtn = gallery.querySelector('.product__gallery__nav__btn.prev')
-        const nextBtn = gallery.querySelector('.product__gallery__nav__btn.next')
-
-
-        prevBtn.addEventListener('click', () => goPrev(gallery))
-        nextBtn.addEventListener('click', () => goNext(gallery))
+        renderSlider(gallery)
+        renderThumbnailImgs(gallery)
     })
 }
+
 // init
-const init = () => {
+const init = () => { 
     renderGalleries()
     renderProductInfo()
 }
