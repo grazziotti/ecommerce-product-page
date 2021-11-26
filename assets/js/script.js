@@ -237,7 +237,7 @@ const renderThumbnailImgs = gallery => {
     const thumbnailList = gallery.querySelector('.product__gallery__thumbnail-list')
 
     product.imgs.thumbnails.forEach( (imgSrc, index) => {
-        const thumbnailItem = document.createElement('div')
+        const thumbnailItem = document.createElement('li')
 
         thumbnailItem .classList.add('product__gallery__thumbnail-item')
         if (index === 0) thumbnailItem .classList.add('active')
@@ -269,7 +269,6 @@ const renderSlider = gallery => {
         const slide = document.createElement('div')
         slide.classList.add('product__gallery__slide')
         slide.setAttribute('data-index', index)
-       
 
         const slideImg = document.createElement('img')
         slideImg.src = imgSrc
@@ -301,4 +300,4 @@ const init = () => {
     renderGalleries()
     renderProductInfo()
 }
-init()
+window.onload = () => init()
