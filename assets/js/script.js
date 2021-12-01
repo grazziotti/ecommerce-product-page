@@ -161,7 +161,7 @@ const updateSlide = gallery => {
 const goPrev = gallery => {
     currentSlideIndex = getCurrentSlideIndex(gallery)          
     currentSlideIndex <= 0 
-        ? currentSlideIndex = totalSlides
+        ? currentSlideIndex = totalSlides-1
         : currentSlideIndex--
     
     updateSlide(gallery)
@@ -169,7 +169,7 @@ const goPrev = gallery => {
 
 const goNext = gallery => {
     currentSlideIndex = getCurrentSlideIndex(gallery)       
-    currentSlideIndex >= totalSlides
+    currentSlideIndex >= totalSlides-1
         ? currentSlideIndex = 0
         : currentSlideIndex++
     
