@@ -51,6 +51,10 @@ img {
     transform: translate(0, 0);
 }
 
+.hide {
+    display: none;
+}
+
 .no-transition {
     transition: none !important;
 }
@@ -362,6 +366,10 @@ img {
 
 .product__gallery__slide img {
     height: 100%;
+}
+
+.product__gallery.desktop .product__gallery__slide img {
+    max-height: 45.3rem;
 }
 
 .product__gallery__slider-width {

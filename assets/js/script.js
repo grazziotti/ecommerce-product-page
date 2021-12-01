@@ -15,7 +15,7 @@ const addCartBtn = document.querySelector('.product__info__add-btn')
 const cart = []
 
 // slider
-const totalSlides = product.imgs.thumbnails.length-1
+const totalSlides = product.imgs.main.length
 let currentSlideIndex = 0
 
 // product lightBox
@@ -153,7 +153,7 @@ const updateSlide = gallery => {
     targetSlide.classList.add('active')
 
     const sliderWidth = slider.clientWidth
-    const newMargin = (sliderWidth / product.imgs.main.length) * getCurrentSlideIndex(gallery)
+    const newMargin = (sliderWidth / totalSlides) * getCurrentSlideIndex(gallery)
     
     slider.style.marginLeft = `-${newMargin}px`
 }
@@ -231,6 +231,8 @@ const renderProductInfo = () => {
     productInfoContainer.querySelector('.product__info__price-now').innerHTML = `$${product.price.now}`
     productInfoContainer.querySelector('.product__info__discount').innerHTML = `${product.price.discount}%`
     productInfoContainer.querySelector('.product__info__price-original').innerHTML = `$${product.price.original}`
+
+    setTimeout(() => productInfoContainer.classList.remove('hide'), 50)   
 }
 
 const renderThumbnailImgs = gallery => {
@@ -261,7 +263,8 @@ const renderThumbnailImgs = gallery => {
 const renderSlider = gallery => {
     const mainImgContainer = gallery.querySelector('.product__gallery__main-img')
     const slider = gallery.querySelector('.product__gallery__slider-width')
-    const sliderWidth = Number.parseInt(window.getComputedStyle(mainImgContainer).getPropertyValue("width").replace('px', '')) * product.imgs.main.length
+    const slideWidth = parseInt(window.getComputedStyle(mainImgContainer).getPropertyValue("width").replace('px', ''))
+    const sliderWidth = slideWidth * totalSlides
 
     slider.style.width = `${sliderWidth}px`
     
@@ -300,4 +303,4 @@ const init = () => {
     renderGalleries()
     renderProductInfo()
 }
-window.onload = () => init()
+init()
